@@ -2,7 +2,7 @@
 ## Description: The data for this project will be collected as part of the project by utilizing open-source web-crawling engines + the BeuatifulSoup library for pulling out the textual content from the collected news entries. At least two different and well-known news portals will be analyzed. Texts analyzed will be in English and/or Hungarian. There will be a sentiment analysis and fake news processing stage(s). The collected news entries will be stored in Cassandra. 
 + Team size: 5
 + Mentored by: Tsegaye, Imre
-+Open-source technologies to be used: 
++ Open-source technologies to be used: 
     - Cassandra
     - Spark (for batch analytics)
     - Flink (in real-time stream mining)
