@@ -17,4 +17,4 @@ ry TEXT);
 
 index_id,id,news_url,title,tweet_ids,Y,category
 
-COPY combinedData ( index_id          UUID PRIMARY KEY, id     TEXT, news_url     TEXT, title   TEXT, tweet_ids TEXT, Y TEXT, category TEXT) FROM '/home/fake-news-detection/src/data/combined_shufled_data.csv';
+COPY combinedData ( index_id, id, news_url, title, tweet_ids, Y, category) FROM '/home/fake-news-detection/src/data/combined_shufled_data.csv';
