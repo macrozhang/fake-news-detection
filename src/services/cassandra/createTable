@@ -16,4 +16,5 @@ CREATE TABLE combinedData ( index_id   TEXT PRIMARY KEY, id   TEXT, news_url   T
 
 index_id,id,news_url,title,tweet_ids,Y,category
 
-COPY combinedData ( index_id, id, news_url, title, tweet_ids, Y, category) FROM '/home/fake-news-detection/src/data/combined_shufled_data_import.csv';
+COPY combinedData ( index_id, id, news_url, title, tweet_ids, Y, category) FROM '/home/fake-news-detection/src/data/combined_shufled_data_import_t1.csv';
+COPY input ( index_id, id, news_url, title, tweet_ids, Y, category) FROM '/home/fake-news-detection/src/data/combined_shufled_data_import.csv';
