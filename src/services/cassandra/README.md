@@ -1,4 +1,9 @@
-# Our docker repository address
+# Docker
+
+The docker repository already configured the Cassandra and imported the extracted data.  
+Use the method of building image instead of generating Dockerfile due to modifying some files in root.  
+
+## Docker repository address in dockerhub
 
 <https://hub.docker.com/r/jamesmacrozhang/faned>
 
