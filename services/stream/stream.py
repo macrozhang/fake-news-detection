@@ -4,6 +4,8 @@ from pyspark import SparkContext
 from pyspark.streaming import StreamingContext
 from pyspark.sql import SparkSession
 
+from utils import preprocessor
+
 """
 This is use for create streaming of text from txt files that creating dynamically 
 from files.py code. This spark streaming will execute in each 1 seconds and It'll
@@ -17,6 +19,16 @@ def readMyStream(rdd, spark):
     print('Selection of Columns')
     df = df.select('id','news_url','title','tweet_ids', 'Y', 'category' )
     df.show()
+    cleaned_df = preprocessor.clean_df(df)
+    cleaned_df.head()
+
+    clm = CatBoostClassifier()
+    clm.load_model("models/weights/catboost", format='cbm')
+
+    predictions = clf.predict(data=cleaned_df)
+
+    cleaned_df['Y'] = predictions
+
 
 
 
