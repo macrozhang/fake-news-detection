@@ -10,7 +10,7 @@ if __name__ == '__main__':
 
     print(f"Batch size is = {BATCH_SIZE}")
 
-    with open("data/prepared_shuffled.json") as f:
+    with open("data/stream_data.json") as f:
         for object_ in f:
             json_lines = json.loads(object_)
             batch = 0
