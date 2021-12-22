@@ -1,12 +1,21 @@
 version: '3.3'
 services:
+  cassandra:
+    image: cassandra:4.0
+    ports:
+      - 9042:9042
+    volumes:
+      - ~/apps/cassandra:/var/lib/cassandra
+    environment:
+      - CASSANDRA_CLUSTER_NAME=fakenews
+
   stream:
     platform: linux/amd64
     # build:  ./services/stream/Dockerfile.test
     image:  streamingservice
     container_name: stream
     environment:
-      # - DB=cassandra
+      - DB_CONNECTION=cassandra
       - BATCH_SIZE=1000
     ports:
     # for spark UI
@@ -16,3 +25,5 @@ services:
       - ./services/stream:/stream
     command:
       spark-submit stream.py
+    depends_on:
+      - "cassandra"
