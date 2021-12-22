@@ -41,4 +41,14 @@ def clean_text_col(df):
     return clean_data
 
 
+def clean_df(spark_df):
+    pd_df = spark_df.toPandas()
+    preprocessed_df = pd.DataFrame(columns=['clean_title', 'category'])
 
+    cleaned_titles = clean_text_col(pd_df)
+
+    preprocessed_df['clean_title'] = cleaned_titles
+    preprocessed_df['category'] = pd_df['category']
+    preprocessed_df['Y'] = pd_df['Y']
+
+    return preprocessed_df
