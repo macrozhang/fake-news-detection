@@ -1,0 +1,25 @@
+version: '3.3'
+services:
+  # cassandra:
+  #   platform: linux/amd64
+  #   container_name: cassandra
+  #   image: cassandra:4.0
+  #   ports:
+  #     - 9042:9042
+  #   # volumes:
+  #     # - 
+  #   networks:
+  #     - fakenews
+
+  # spark:
+  #   image: 'aa8y/spark'
+  #   volumes:
+  #     - ./data:/data
+  #     - ./services/stream:/stream
+  stream:
+    platform: linux/amd64
+    build:  ./services/stream
+    container_name: stream
+    volumes:
+      - ./data:/data
+      - ./services/stream:/stream

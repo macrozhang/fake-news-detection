@@ -1,16 +1,11 @@
-FROM python:3.9
+FROM python:3.8
 
-COPY ./requirements.txt /src/
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    unixodbc-dev \
-    unixodbc \
-    libpq-dev 
-
+COPY ./requirements.txt /stream/
 
 RUN pip install --upgrade pip
-RUN pip install -r /src/requirements.txt
+RUN pip install -r /stream/requirements.txt
 
-COPY ./ /src
-WORKDIR /src/
-# CMD python test.py
+COPY ./ /stream
+WORKDIR /stream/
+
+CMD python ./main.py
