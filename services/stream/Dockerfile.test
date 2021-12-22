@@ -17,3 +17,6 @@ COPY stream.py .
 # CMD ["sleep", "30"]
 
 # CMD ["python", "main.py"]
+
+
+# stream % docker build -t zozosteamingv2 -f Dockerfile.test .
