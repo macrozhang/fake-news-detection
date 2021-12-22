@@ -1,3 +1,7 @@
 .DS_Store
 .vscode
 .env
+.idea
+venv
+services/stream/Nas/*
+__pycache__

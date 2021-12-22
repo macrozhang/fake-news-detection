@@ -1,6 +1,0 @@
-[hadoop@linux bin]$ cqlsh
-
-cqlsh> source '/cassandra/shell';
-
-$javac Read_Data.java
-$java Read_Data
