@@ -15,10 +15,13 @@ show number of words count from each files dynamically
 def readMyStream(rdd, spark):
   if not rdd.isEmpty():
     df = spark.read.json(rdd)
+
     print('Started the Process')
     print('Selection of Columns')
+
     df = df.select('id','news_url','title','tweet_ids', 'Y', 'category' )
     df.show()
+    
     cleaned_df = preprocessor.clean_df(df)
     cleaned_df.head()
 
