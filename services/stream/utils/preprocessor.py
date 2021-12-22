@@ -32,7 +32,6 @@ def clean_text(text):
     return text
 
 
-
 def clean_text_col(df):
     clean_data = []
     for line in df['title']:
