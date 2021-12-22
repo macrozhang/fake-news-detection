@@ -1,25 +1,18 @@
 version: '3.3'
 services:
-  # cassandra:
-  #   platform: linux/amd64
-  #   container_name: cassandra
-  #   image: cassandra:4.0
-  #   ports:
-  #     - 9042:9042
-  #   # volumes:
-  #     # - 
-  #   networks:
-  #     - fakenews
-
-  # spark:
-  #   image: 'aa8y/spark'
-  #   volumes:
-  #     - ./data:/data
-  #     - ./services/stream:/stream
   stream:
     platform: linux/amd64
-    build:  ./services/stream
+    # build:  ./services/stream/Dockerfile.test
+    image:  streamingservice
     container_name: stream
+    environment:
+      # - DB=cassandra
+      - BATCH_SIZE=1000
+    ports:
+    # for spark UI
+      - 4040:4040
     volumes:
       - ./data:/data
       - ./services/stream:/stream
+    command:
+      spark-submit stream.py

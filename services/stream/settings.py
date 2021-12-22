@@ -1,8 +1,8 @@
 import os
-import dotenv
+# import dotenv
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
-dotenv.load_dotenv(f'{BASE_DIR}/.env')
+# dotenv.load_dotenv(f'{BASE_DIR}/.env')
 
-BATCH_SIZE = os.environ.get('BATCH_SIZE')
+BATCH_SIZE = int(os.environ.get('BATCH_SIZE'))

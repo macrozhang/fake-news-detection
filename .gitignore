@@ -3,3 +3,5 @@
 .env
 .idea
 venv
+services/stream/Nas/*
+__pycache__

@@ -12,3 +12,8 @@ EXPOSE 4040
 
 COPY main.py .
 COPY stream.py .
+
+# waiting for spark warming up
+# CMD ["sleep", "30"]
+
+# CMD ["python", "main.py"]

@@ -26,6 +26,7 @@ def main():
 
     ssc = StreamingContext(sc, 1)   # Streaming will execute in each 1 seconds
     lines = ssc.textFileStream("/opt/application/NAS")
+
     lines.foreachRDD(lambda rdd: readMyStream(rdd, spark))
 
     ssc.start()

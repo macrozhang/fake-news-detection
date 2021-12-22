@@ -7,7 +7,10 @@ from datetime import datetime
 from settings import BATCH_SIZE
 
 if __name__ == '__main__':
-    with open("/opt/application/data/prepared_shuffled.json") as f:
+
+    print(f"Batch size is = {BATCH_SIZE}")
+
+    with open("data/prepared_shuffled.json") as f:
         for object_ in f:
             json_lines = json.loads(object_)
             batch = 0
@@ -17,8 +20,9 @@ if __name__ == '__main__':
                     data.append(line)
                     batch += 1
                 else:
-                    with open(f"/opt/application/NAS/batch_{datetime.now().strftime('%Y%m%d_%H%M%S%f')}.json", "w") as f:
+                    newFileName = f"NAS/batch_{datetime.now().strftime('%Y%m%d_%H%M%S%f')}.json"
+                    with open(newFileName, "w") as f:
                         json.dump(data, f)
-                    print("New file was created!")
+                    print(f"{newFileName} was created!")
                     batch = 0
                     data = []
