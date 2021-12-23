@@ -4,6 +4,8 @@ ENV PYSPARK_MAJOR_PYTHON_VERSION=3
 WORKDIR /opt/application/
 
 COPY requirements.txt .
+
+RUN pip3 install --upgrade pip  --user
 RUN pip3 install -r requirements.txt
 
 COPY . .
@@ -19,4 +21,4 @@ COPY stream.py .
 # CMD ["python", "main.py"]
 
 
-# stream % docker build -t zozosteamingv2 -f Dockerfile.test .
+# stream % docker build -t streamingservicev12 -f Dockerfile.test .
