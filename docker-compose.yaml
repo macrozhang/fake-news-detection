@@ -8,11 +8,12 @@ services:
       - ~/apps/cassandra:/var/lib/cassandra
     environment:
       - CASSANDRA_CLUSTER_NAME=fakenews
+    restart: always
 
   stream:
     platform: linux/amd64
     # build:  ./services/stream/Dockerfile.test
-    image:  streamingservice
+    image:  testx4
     container_name: stream
     environment:
       - DB_CONNECTION=cassandra

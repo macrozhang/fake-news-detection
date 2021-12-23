@@ -16,6 +16,8 @@ if __name__ == '__main__':
             batch = 0
             data = []
             for line in json_lines:
+                # time.sleep(0.05)
+                # print(f"sleeping {batch}")
                 if batch <= BATCH_SIZE:
                     data.append(line)
                     batch += 1

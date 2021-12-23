@@ -48,6 +48,5 @@ def clean_df(spark_df):
 
     preprocessed_df['clean_title'] = cleaned_titles
     preprocessed_df['category'] = pd_df['category']
-    preprocessed_df['Y'] = pd_df['Y']
 
     return preprocessed_df
