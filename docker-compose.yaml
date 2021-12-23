@@ -28,3 +28,14 @@ services:
       spark-submit stream.py
     depends_on:
       - "cassandra"
+  visualization:
+    # image:  vizualization
+    build: ./services/visualization/FinalVisualization
+    container_name:  vizualization
+    environment:
+      - DB_CONNECTION=cassandra
+    ports:
+      - 5001:5001
+    depends_on:
+      - "cassandra"
+    restart: unless-stopped
