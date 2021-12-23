@@ -1,0 +1,7 @@
+numpy
+pandas
+requests
+flask
+flask_executor
+pyecharts
+cassandra-driver
