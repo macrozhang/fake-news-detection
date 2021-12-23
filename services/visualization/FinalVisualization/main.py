@@ -10,6 +10,7 @@ from cassandra.query import dict_factory
 from flask_apscheduler import APScheduler
 
 from settings import DB_CONNECTION
+from db_utils import CassandraDb
 
 CurrentConfig.GLOBAL_ENV = Environment(loader=FileSystemLoader("./templates"))
 app = Flask(__name__, static_url_path='')
@@ -43,15 +44,19 @@ class Config(object):
 
 
 def getData():
-    auth_provider = PlainTextAuthProvider(username=CASSANDRA_USER, password=CASSANDRA_PASS)
-    cluster = Cluster(contact_points=[CASSANDRA_HOST], port=CASSANDRA_PORT,
-                      auth_provider=auth_provider)
-    session = cluster.connect(CASSANDRA_DB)
-    session.row_factory = dict_factory
-    sql_query = "SELECT index_id, id, news_url, title, tweet_ids, y, category FROM {}.{};".format(CASSANDRA_DB,
-                                                                                                  CASSANDRA_TABLE)
+    # auth_provider = PlainTextAuthProvider(username=CASSANDRA_USER, password=CASSANDRA_PASS)
+    # cluster = Cluster(contact_points=[CASSANDRA_HOST], port=CASSANDRA_PORT,
+    #                   auth_provider=auth_provider)
+    # session = cluster.connect(CASSANDRA_DB)
+    # session.row_factory = dict_factory
+    # sql_query = "SELECT index_id, id, news_url, title, tweet_ids, y, category FROM {}.{};".format(CASSANDRA_DB,
+                                                                                                #   CASSANDRA_TABLE)
+
+    data = db.read_table(CASSANDRA_DB, CASSANDRA_TABLE, fields=[])
+
     df = pd.DataFrame()
-    for row in session.execute(sql_query):
+    # for row in session.execute(sql_query):
+    for row in data:
         df = df.append(pd.DataFrame(row, index=[0]))
     newdf = df.groupby(['category', 'y']).count()
     newdf = newdf.reset_index()

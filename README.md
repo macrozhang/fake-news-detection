@@ -5,7 +5,7 @@ The data for this project will be collected as part of the project by utilizing 
 # For running the project:
 
 ```sh
-docker-compose up
+docker compose up --build --force-recreate
 docker exec -it stream bash --> python main.py
 ```
 
