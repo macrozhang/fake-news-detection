@@ -9,17 +9,25 @@ from cassandra.auth import PlainTextAuthProvider
 from cassandra.query import dict_factory
 from flask_apscheduler import APScheduler
 
+from settings import DB_CONNECTION
+
 CurrentConfig.GLOBAL_ENV = Environment(loader=FileSystemLoader("./templates"))
 app = Flask(__name__, static_url_path='')
 app.jinja_env.variable_start_string = '{{ '
 app.jinja_env.variable_end_string = ' }}'
 
-CASSANDRA_USER = "cassandra"
-CASSANDRA_PASS = "cassandra"
-CASSANDRA_HOST = "192.168.20.30"
+
+# CASSANDRA_DB = "fakenews"
+# CASSANDRA_TABLE = "combinedData"
+# CASSANDRA_USER = "cassandra"
+# CASSANDRA_PASS = "cassandra"
+
+CASSANDRA_HOST = DB_CONNECTION
 CASSANDRA_PORT = "9042"
 CASSANDRA_DB = "fakenews"
-CASSANDRA_TABLE = "combinedData"
+CASSANDRA_TABLE = "dataset"
+
+db = CassandraDb([DB_CONNECTION], CASSANDRA_PORT)
 
 
 class Config(object):

@@ -5,4 +5,4 @@ flask
 flask_executor
 pyecharts
 cassandra-driver
-flask_apscheduler
+Flask-APScheduler

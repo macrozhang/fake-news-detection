@@ -12,8 +12,8 @@ services:
 
   stream:
     platform: linux/amd64
-    # build:  ./services/stream/Dockerfile.test
-    image:  testx4
+    build:  ./services/stream/
+    # image:  streamservice
     container_name: stream
     environment:
       - DB_CONNECTION=cassandra

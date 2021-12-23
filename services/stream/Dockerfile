@@ -1,11 +1,24 @@
-FROM python:3.8
+from gcr.io/datamechanics/spark:platform-3.1-dm14
 
-COPY ./requirements.txt /stream/
+ENV PYSPARK_MAJOR_PYTHON_VERSION=3
+WORKDIR /opt/application/
 
-RUN pip install --upgrade pip
-RUN pip install -r /stream/requirements.txt
+COPY requirements.txt .
 
-COPY ./ /stream
-WORKDIR /stream/
+RUN pip3 install --upgrade pip  --user
+RUN pip3 install -r requirements.txt
 
-CMD python ./main.py
+COPY . .
+
+EXPOSE 4040
+
+COPY main.py .
+COPY stream.py .
+
+# waiting for spark warming up
+# CMD ["sleep", "30"]
+
+# CMD ["python", "main.py"]
+
+
+# stream % docker build -t streamingservicev12 -f Dockerfile.test .
