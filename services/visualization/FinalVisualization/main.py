@@ -53,6 +53,8 @@ def getData():
                                                                                                 #   CASSANDRA_TABLE)
 
     data = db.read_table(CASSANDRA_DB, CASSANDRA_TABLE, fields=[])
+    print(type(data))
+    print(data)
 
     df = pd.DataFrame()
     # for row in session.execute(sql_query):
