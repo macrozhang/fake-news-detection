@@ -6,7 +6,9 @@ The data for this project will be collected as part of the project by utilizing 
 
 ```sh
 docker compose up --build --force-recreate
+# docker-compose up
 docker exec -it stream bash --> python main.py
+# docker exec -u root -it stream /bin/bash
 ```
 
 To see the data in the database:
