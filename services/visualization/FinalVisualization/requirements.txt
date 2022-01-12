@@ -1,0 +1,9 @@
+numpy
+pandas
+requests
+Flask
+flask_executor
+pyecharts
+cassandra-driver
+Flask-APScheduler
+plotly==5.5.0
