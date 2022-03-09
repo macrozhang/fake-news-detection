@@ -11,6 +11,8 @@ import org.apache.spark.sql.SparkSession;
 import org.apache.spark.sql.types.*;
 import org.apache.spark.streaming.Durations;
 import org.apache.spark.streaming.api.java.JavaStreamingContext;
+import org.apache.spark.ml.feature.Word2VecModel;
+import org.apache.spark.ml.classification.DecisionTreeClassificationModel;
 
 import java.io.File;
 import java.util.*;
@@ -50,7 +52,28 @@ public class SparkStream {
 				new StructField("flag", DataTypes.IntegerType, false, Metadata.empty())
 		});
 
+		Dataset<Row> documentDF = spark.createDataFrame(data, schema);
+
+
 		// Training decision tree model: vector + flag - 训练决策树模型：向量+flag
+
+		Word2Vec word2Vec = new Word2Vec()
+				.setInputCol("text")
+				.setOutputCol("result")
+				.setVectorSize(20)
+				.setMinCount(0);
+
+		Word2VecModel wvmodel = word2Vec.fit(documentDF);
+
+		Dataset<Row> result = wvmodel.transform(documentDF);
+		// Create the trainer and set its parameters
+		DecisionTreeClassifier dt = new DecisionTreeClassifier();
+		// Train the model
+		dt.setLabelCol("flag");
+		dt.setFeaturesCol("result");
+		DecisionTreeClassificationModel dtmodel = dt.fit(train);
+
+
 	
 	}
 }
